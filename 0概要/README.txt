@@ -9,6 +9,13 @@
  水産資源学_0_概要_2026_v3.pptx  完成版
  2026授業計画.docx   第6章の名前を教科書に合わせた版（漁業管理 → 水産資源管理）
 
+■ Drive の置き場所
+ このフォルダ「2026/0概要/0概要スライド作業用（Claude）」… make0.js，post.py，make_title_png.py，prepare_assets0.py，この README
+ 「2026/0概要」直下 … 元の 0概要.pptx（素材），完成版 pptx
+ 「2026」直下 … 2026授業計画.docx
+ 「フォント/makinas4」… Makinas-4-Square.otf
+ GitHub phocoena-ui/claudeCode のブランチ claude/nifty-carson-gacb4u の 0概要/ にも同じもの一式（title_makinas.png を含む）
+
 ■ 手順
  1. python3 prepare_assets0.py 0概要.pptx work/assets
     python3 make_title_png.py Makinas-4-Square.otf work/assets
