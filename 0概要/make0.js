@@ -17,7 +17,7 @@ const ALT = {
   "miyabe_cover.jpg": "芳山 拓『釣りがつなぐ希少魚の保全と地域振興』の表紙", "kujira_cover.jpg": "松石 隆『出動！イルカ・クジラ110番』の表紙",
   "qr_tb.png": "指定教科書（楽天ブックス）へのQRコード", "qr_engan.png": "『沿岸資源調査法』（楽天ブックス）へのQRコード",
   "qr_miyabe.png": "『釣りがつなぐ希少魚の保全と地域振興』（楽天ブックス）へのQRコード", "qr_kujira.png": "『出動！イルカ・クジラ110番』（楽天ブックス）へのQRコード",
-  "last.jpg": "函館山からの夜景",
+  "last.jpg": "函館山からの夜景", "title_makinas.png": "水産資源学",
 };
 const alt = (p) => ALT[path.basename(p)] || "";
 
@@ -135,11 +135,18 @@ async function icon(name, color, size = 256) {
     s.addShape(pres.shapes.OVAL, { x: -1.6, y: 4.9, w: 4.2, h: 4.2, fill: { color: TEAL, transparency: 80 }, line: { color: NAVY, transparency: 100 } });
     s.addShape(pres.shapes.OVAL, { x: 11.3, y: 5.3, w: 0.9, h: 0.9, fill: { color: CORAL, transparency: 20 }, line: { color: NAVY, transparency: 100 } });
     T(s, "2026", { x: 1.0, y: 1.55, w: 4, h: 0.6, fontSize: 28, bold: true, color: CORAL, fontFace: NUM });
-    T(s, "水産資源学", { x: 0.9, y: 2.2, w: 11.5, h: 2.1, fontSize: 120, color: WHITE, fontFace: LOGO, valign: "middle" });
+    // マキナスは画像にして貼る（フォントが入っていない PC でも同じ見た目）。画像がなければ文字で
+    const logo = asset("title_makinas.png");
+    if (logo) {
+      const h = 1.45, w = h * 3040 / 559;
+      s.addImage({ path: logo, altText: alt(logo), x: 0.97, y: 3.25 - h / 2, w, h });
+    } else {
+      T(s, "水産資源学", { x: 0.9, y: 2.2, w: 11.5, h: 2.1, fontSize: 120, color: WHITE, fontFace: LOGO, valign: "middle" });
+    }
     s.addShape(pres.shapes.LINE, { x: 1.0, y: 4.55, w: 2.4, h: 0, line: { color: CORAL, width: 4 } });
     T(s, "北海道大学 水産科学研究院　松石 隆", { x: 1.0, y: 5.4, w: 8, h: 0.45, fontSize: 18, color: WHITE });
     T(s, "Matsuishi Takashi Fritz", { x: 1.0, y: 5.85, w: 8, h: 0.4, fontSize: 14, color: "9FB6BF", fontFace: NUM });
-    s.addNotes("「水産資源学」はマキナス 4 Square。このフォントが入っていないPCでは別の書体で表示される。");
+    s.addNotes("「水産資源学」はマキナス 4 Square を画像にしたもの（make_title_png.py）。");
   }
 
   // 1. タイトル
