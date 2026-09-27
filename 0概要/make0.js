@@ -17,7 +17,7 @@ const ALT = {
   "miyabe_cover.jpg": "芳山 拓『釣りがつなぐ希少魚の保全と地域振興』の表紙", "kujira_cover.jpg": "松石 隆『出動！イルカ・クジラ110番』の表紙",
   "qr_tb.png": "指定教科書（楽天ブックス）へのQRコード", "qr_engan.png": "『沿岸資源調査法』（楽天ブックス）へのQRコード",
   "qr_miyabe.png": "『釣りがつなぐ希少魚の保全と地域振興』（楽天ブックス）へのQRコード", "qr_kujira.png": "『出動！イルカ・クジラ110番』（楽天ブックス）へのQRコード",
-  "last.jpg": "雪の夜の街の夜景",
+  "last.jpg": "函館山からの夜景",
 };
 const alt = (p) => ALT[path.basename(p)] || "";
 
@@ -33,6 +33,7 @@ const INK = "1F2D33";
 const MUTED = "5B6B73";
 const WHITE = "FFFFFF";
 const FONT = "BIZ UDPGothic";
+const LOGO = "マキナス 4 Square"; // 表紙の「水産資源学」（旧スライドと同じ書体）
 const NUM = "Arial";
 
 async function icon(name, color, size = 256) {
@@ -125,6 +126,22 @@ async function icon(name, color, size = 256) {
   }
 
   // =========================================================
+  // 0. 表紙（「水産資源学」をマキナスで）
+  {
+    const s = pres.addSlide();
+    page++;
+    s.background = { color: NAVY };
+    s.addShape(pres.shapes.OVAL, { x: 7.9, y: -2.2, w: 7.6, h: 7.6, fill: { color: TEAL, transparency: 70 }, line: { color: NAVY, transparency: 100 } });
+    s.addShape(pres.shapes.OVAL, { x: -1.6, y: 4.9, w: 4.2, h: 4.2, fill: { color: TEAL, transparency: 80 }, line: { color: NAVY, transparency: 100 } });
+    s.addShape(pres.shapes.OVAL, { x: 11.3, y: 5.3, w: 0.9, h: 0.9, fill: { color: CORAL, transparency: 20 }, line: { color: NAVY, transparency: 100 } });
+    T(s, "2026", { x: 1.0, y: 1.55, w: 4, h: 0.6, fontSize: 28, bold: true, color: CORAL, fontFace: NUM });
+    T(s, "水産資源学", { x: 0.9, y: 2.2, w: 11.5, h: 2.1, fontSize: 120, color: WHITE, fontFace: LOGO, valign: "middle" });
+    s.addShape(pres.shapes.LINE, { x: 1.0, y: 4.55, w: 2.4, h: 0, line: { color: CORAL, width: 4 } });
+    T(s, "北海道大学 水産科学研究院　松石 隆", { x: 1.0, y: 5.4, w: 8, h: 0.45, fontSize: 18, color: WHITE });
+    T(s, "Matsuishi Takashi Fritz", { x: 1.0, y: 5.85, w: 8, h: 0.4, fontSize: 14, color: "9FB6BF", fontFace: NUM });
+    s.addNotes("「水産資源学」はマキナス 4 Square。このフォントが入っていないPCでは別の書体で表示される。");
+  }
+
   // 1. タイトル
   {
     const s = pres.addSlide();
@@ -223,20 +240,19 @@ async function icon(name, color, size = 256) {
   {
     const s = base(SEC, "日本発の学問，そして社会が必要とする学問", "松石 隆『水産資源学［二訂版］』海文堂出版，緒言");
     T(s, "日本発の水産学", { x: 0.6, y: 1.5, w: 6, h: 0.5, fontSize: 20, bold: true, color: NAVY });
-    const tl = [
-      ["1901", "北海道でニシンの水産資源学的研究が始まる", NAVY],
-      ["1941", "相川広秋『水産資源学』刊行。世界に先駆けた教科書", CORAL_T],
-      ["1957", "Beverton & Holt の教科書（16年後）", MUTED],
+    // 教科書刊行の年は第1章 Q3 の答えなので，ここでは出さない
+    const jp = [
+      ["FaMapMarkerAlt", "北海道から発祥", "1901年，北海道でニシンの水産資源学的研究が始まった", NAVY],
+      ["FaBookOpen", "世界に先駆けて教科書が刊行", "『水産資源学』というタイトルの教科書が，世界に先駆けて日本で出版された", CORAL],
+      ["FaGlobeAsia", "日本で独自に発展した学問体系", "欧米の手法を取り込みつつ，日本で独自に発展した", TEAL],
     ];
-    s.addShape(pres.shapes.LINE, { x: 1.05, y: 2.35, w: 0, h: 3.0, line: { color: GRAYBAR, width: 2.5 } });
-    tl.forEach(([yr, t, c], i) => {
-      const y = 2.2 + i * 1.3;
-      s.addShape(pres.shapes.OVAL, { x: 0.87, y: y + 0.12, w: 0.36, h: 0.36, fill: { color: c }, line: { color: WHITE, width: 2 } });
-      T(s, yr, { x: 1.5, y, w: 1.3, h: 0.6, fontSize: 28, bold: true, color: c, fontFace: NUM, valign: "middle" });
-      T(s, t, { x: 2.85, y, w: 3.9, h: 0.9, fontSize: 15, color: INK, valign: "top" });
-    });
-    card(s, 0.6, 5.95, 6.2, 0.75, MINT);
-    T(s, "日本の水産資源学は北海道から発祥", { x: 0.85, y: 5.95, w: 5.8, h: 0.75, fontSize: 17, bold: true, color: NAVY, valign: "middle" });
+    for (let i = 0; i < jp.length; i++) {
+      const y = 2.1 + i * 1.55;
+      card(s, 0.6, y, 6.2, 1.4, jp[i][3] === CORAL ? "FFE8E1" : MINT);
+      await circleIcon(s, jp[i][0], 0.8, y + 0.3, 0.8, jp[i][3]);
+      T(s, jp[i][1], { x: 1.8, y: y + 0.15, w: 4.85, h: 0.5, fontSize: 18, bold: true, color: jp[i][3] === CORAL ? CORAL_T : NAVY, valign: "middle" });
+      T(s, jp[i][2], { x: 1.8, y: y + 0.65, w: 4.85, h: 0.65, fontSize: 14, color: INK, valign: "top" });
+    }
     // 右：社会のニーズ
     card(s, 7.2, 1.5, 5.5, 5.2, NAVY);
     T(s, "社会的に大きな期待とニーズがある", { x: 7.5, y: 1.7, w: 5.0, h: 0.5, fontSize: 19, bold: true, color: CORAL });
@@ -318,10 +334,10 @@ async function icon(name, color, size = 256) {
       ["10", "11月 6日（金）", "第5章 漁獲モデル2", "対面"],
       ["11", "11月10日（火）", "第6章 水産資源管理", "対面"],
       ["12", "11月13日（金）", "プレ試験", "対面"],
-      ["13", "11月17日（火）", "Reading Week", "対面"],
-      ["14", "11月20日（金）", "本試験", "各自"],
+      ["13", "11月17日（火）", "Reading Week", "各自"],
+      ["14", "11月20日（金）", "本試験", "対面"],
       ["15", "11月24日（火）", "鯨類資源について（松田純佳）", "対面"],
-      ["16", "12月 1日（火）", "Reading Week", "対面"],
+      ["16", "12月 1日（火）", "Reading Week", "各自"],
     ];
     const hd = (t, al = "center") => ({ text: t, options: { bold: true, color: WHITE, fill: { color: NAVY }, align: al } });
     const modeColor = { "対面": NAVY, "オンデマンド": CORAL_T, "各自": TEAL };
@@ -494,6 +510,7 @@ async function icon(name, color, size = 256) {
     const s = pres.addSlide(); page++;
     s.background = { color: "000000" };
     s.addImage({ path: asset("last.jpg"), altText: alt("last.jpg"), x: 0, y: 0, w: 13.333, h: 7.5, sizing: { type: "cover", w: 13.333, h: 7.5 } });
+    T(s, "函館山からの夜景", { x: 0.5, y: 6.7, w: 5, h: 0.55, fontSize: 22, bold: true, color: WHITE, shadow: { type: "outer", color: "000000", opacity: 0.6, blur: 4, offset: 1, angle: 90 } });
     s.addNotes("");
   }
 
