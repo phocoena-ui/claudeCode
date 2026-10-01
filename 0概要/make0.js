@@ -315,7 +315,7 @@ async function icon(name, color, size = 256) {
       T(s, "第" + n + "章", { x, y: 2.85, w: cw, h: 0.5, fontSize: 18, bold: true, color: MUTED, align: "center" });
       T(s, t, { x: x + 0.05, y: 3.4, w: cw - 0.1, h: 1.0, fontSize: 17, bold: true, color: NAVY, align: "center", valign: "top" });
     }
-    const ex = [["プレ試験", "11月13日（金）", CORAL], ["本試験", "11月20日（金）", CORAL], ["鯨類資源について", "11月24日（火）松田純佳", TEAL]];
+    const ex = [["鯨類資源について", "11月10日（火）松田純佳", TEAL], ["プレ試験", "11月20日（金）", CORAL], ["本試験", "12月1日（火）", CORAL]];
     ex.forEach(([t, d, c], i) => {
       const x = 0.6 + i * 4.1;
       card(s, x, 5.0, 3.9, 1.6, c === CORAL ? "FFE8E1" : MINT);
@@ -339,12 +339,12 @@ async function icon(name, color, size = 256) {
       ["8", "10月27日（火）", "第4章 資源量推定2", "オンデマンド"],
       ["9", "10月30日（金）", "第5章 漁獲モデル1", "対面"],
       ["10", "11月 6日（金）", "第5章 漁獲モデル2", "対面"],
-      ["11", "11月10日（火）", "第6章 水産資源管理", "対面"],
-      ["12", "11月13日（金）", "プレ試験", "対面"],
-      ["13", "11月17日（火）", "Reading Week", "各自"],
-      ["14", "11月20日（金）", "本試験", "対面"],
-      ["15", "11月24日（火）", "鯨類資源について（松田純佳）", "対面"],
-      ["16", "12月 1日（火）", "Reading Week", "各自"],
+      ["11", "11月10日（火）", "鯨類資源について（松田純佳）", "対面"],
+      ["12", "11月13日（金）", "Reading Week", "各自"],
+      ["13", "11月17日（火）", "第6章 水産資源管理", "対面"],
+      ["14", "11月20日（金）", "プレ試験", "対面"],
+      ["15", "11月24日（火）", "Reading Week", "各自"],
+      ["16", "12月 1日（火）", "本試験", "対面"],
     ];
     const hd = (t, al = "center") => ({ text: t, options: { bold: true, color: WHITE, fill: { color: NAVY }, align: al } });
     const modeColor = { "対面": NAVY, "オンデマンド": CORAL_T, "各自": TEAL };
@@ -395,7 +395,7 @@ async function icon(name, color, size = 256) {
     card(s, 8.2, 1.6, 4.5, 4.85, NAVY);
     await circleIcon(s, "FaCalendarAlt", 8.5, 1.85, 0.75, CORAL);
     T(s, "試験日（対面）", { x: 9.4, y: 1.85, w: 3.1, h: 0.75, fontSize: 20, bold: true, color: WHITE, valign: "middle" });
-    [["プレ試験", "11月13日（金）2限"], ["本試験", "11月20日（金）2限"]].forEach(([t, d], i) => {
+    [["プレ試験", "11月20日（金）2限"], ["本試験", "12月1日（火）1限"]].forEach(([t, d], i) => {
       const y = 2.95 + i * 1.65;
       card(s, 8.5, y, 3.9, 1.4, "1C5670");
       T(s, t, { x: 8.75, y: y + 0.15, w: 3.5, h: 0.5, fontSize: 18, bold: true, color: CORAL });
