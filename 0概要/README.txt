@@ -6,7 +6,8 @@
  post.py             後処理：日本語の禁則（JLREQ）設定，言語 ja-JP（第1章と同じもの）
  make_title_png.py   表紙の「水産資源学」をマキナスで透過PNG（title_makinas.png）にする
  prepare_assets0.py  旧スライド 0概要.pptx から表紙・QRコード・写真を assets/ に取り出す
- 水産資源学_0_概要_2026_v4.pptx  完成版
+ 水産資源学_0_概要_2026_v4.pptx  完成版（編集用）
+ 水産資源学_0_概要_2026.pdf      公表版 PDF（v4 から作成，版番号なし）
  2026授業計画.docx   第6章の名前を教科書に合わせた版（漁業管理 → 水産資源管理）
 
 ■ Drive の置き場所
@@ -47,3 +48,7 @@
 ■ v4 の変更点（2026-10-01，授業計画の日程変更に合わせた）
  11/10 鯨類資源について（松田純佳），11/13 Reading Week，11/17 第6章，11/20 プレ試験，11/24 Reading Week，12/1 本試験
  「授業の構成」の試験カードと「授業のやりかた」の試験日（プレ 11/20 金2限，本 12/1 火1限）も更新
+
+■ 公表版 PDF（2026-10-01）
+ v4 の pptx を LibreOffice で PDF に書き出し（BIZ UDPゴシック埋め込み，画像は再圧縮なし）
+ soffice --headless --convert-to 'pdf:impress_pdf_Export:{"Quality":{"type":"long","value":"95"},"ReduceImageResolution":{"type":"boolean","value":"false"}}' deck.pptx
