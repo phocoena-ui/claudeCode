@@ -2,14 +2,15 @@
 #   - 全個体が同じ成長パラメータ（Linf, K）を使う
 #   - 毎月の体長増分 = von Bertalanffy の 1 か月分の増分 × 誤差 eps
 #     eps は平均 1, CV = cv_inc の対数正規分布（個体ごと・月ごとに独立）
-#     cv_inc が大きい（> 0.7 程度）と eps > 1/(1-exp(-K/12)) で Linf を超える個体が出る
+#     1 か月で Linf を飛び越えないよう，増分は (Linf - L) を上限とする
 #   - 加入は年 R 尾を repro_wt（12 か月分の重み）で配分。体長 0 で加入
 #   - 死亡は Z = M + F × 選択率(L)（ロジスティック，L50 と wqs）
 #   - 漁獲で死んだ個体から毎月 n_samp 尾を無作為抽出して体長組成にする
+#   cv_inc = 1.0 で 9 か月齢の体長の CV ≈ 0.2（L∞=25, K=1.2, M=2, F=3 のとき）
 # 返り値: list(lfq = TropFishR の lfq オブジェクト, pop = 月ごとの個体数,
 #              cv_at_age = 最終月の年齢（月）別の平均体長と CV)
 
-lfqSimPE <- function(Linf = 25, K = 1.2, cv_inc = 0.2,
+lfqSimPE <- function(Linf = 25, K = 1.2, cv_inc = 1.0,
                      repro_wt = c(0, 0.5, 1, 0.5, 0, 0, 0, 0.25, 0.5, 0.25, 0, 0),
                      R = 80000, M = 2.0, F = 3.0, L50 = 14, wqs = 2,
                      years = 10, sample_years = 2, n_samp = 500,
@@ -33,7 +34,7 @@ lfqSimPE <- function(Linf = 25, K = 1.2, cv_inc = 0.2,
     # 1. 成長（過程誤差つき）
     if (length(L) > 0) {
       eps <- rlnorm(length(L), meanlog = -sdlog^2 / 2, sdlog = sdlog)
-      L <- L + pmax((Linf - L) * g * eps, 0)  # 縮まない（L > Linf なら成長 0）
+      L <- L + (Linf - L) * pmin(g * eps, 1)
       A <- A + 1
     }
     # 2. 加入（体長 0）
