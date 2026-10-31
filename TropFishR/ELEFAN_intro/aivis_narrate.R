@@ -1,11 +1,11 @@
 # ============================================================
-# 15分でわかるELEFAN：ナレーションを AivisSpeech の声に差し替える
+# はじめての ELEFAN：ナレーションを AivisSpeech の声に差し替える
 #
 # 使い方
 #   1. AivisSpeech を起動しておく（起動すると音声エンジンも動く）
 #   2. このスクリプト全体を RStudio の Console に貼り付けて Enter
-#   3. ファイル選択の窓で ELEFAN_15min_narrated.pptx を選ぶ
-#   → 同じフォルダに ELEFAN_15min_narrated_aivis.pptx ができる
+#   3. ファイル選択の窓で ELEFAN_intro_narrated.pptx を選ぶ
+#   → 同じフォルダに ELEFAN_intro_narrated_aivis.pptx ができる
 # ============================================================
 
 voice_name <- "阿井田"         # 話者の名前（一部だけでもよい。阿井田 茂）
@@ -76,9 +76,9 @@ wav_write <- function(pcm, rate, channels, bits) {
 
 # ---- 3. 読み上げる原稿（スライドごと） -----------------------------
 narration <- list(
-  c("こんにちは。今日は、十五分でわかる、エレファンです。",
+  c("こんにちは。今日のテーマは、エレファンです。",
     "エレファンは、魚の年齢が分からなくても、体長だけから、成長の速さを推定する方法です。",
-    "しくみ、使い方、そして落とし穴までを、十五分で話します。"),
+    "しくみ、使い方、そして落とし穴までを、順に話します。"),
   c("資源評価では、魚がどれくらいの速さで育つか、つまり成長の情報が欠かせません。",
     "ふつうは、耳石の年輪で年齢を読みます。しかし、熱帯の魚や、エビや貝のような無脊椎動物では、年輪がはっきりしないことが多いのです。",
     "一方、体長なら、市場やみずあげばで、安く、たくさん、毎月測れます。",
@@ -137,7 +137,7 @@ narration <- list(
 )
 
 # ---- 4. PowerPoint の音声を差し替える -------------------------------
-pptx_in  <- file.choose()                     # ELEFAN_15min_narrated.pptx を選ぶ
+pptx_in  <- file.choose()                     # ELEFAN_intro_narrated.pptx を選ぶ
 pptx_out <- sub("\\.pptx$", "_aivis.pptx", pptx_in)
 tmp <- file.path(tempdir(), "pptx_aivis")
 unlink(tmp, recursive = TRUE); dir.create(tmp)

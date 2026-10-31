@@ -4,7 +4,7 @@ const N = JSON.parse(fs.readFileSync('narration.json'));
 const imgs = fs.readdirSync('img').filter(f => f.endsWith('.png')).sort();
 const pptx = new pptxgen();
 pptx.layout = 'LAYOUT_WIDE';            // 13.333 x 7.5 in
-pptx.title = '15分でわかるELEFAN（ナレーション付き）';
+pptx.title = 'はじめての ELEFAN（ナレーション付き）';
 pptx.author = 'Matsuishi Takashi Fritz';
 imgs.forEach((f, i) => {
   const s = pptx.addSlide();
