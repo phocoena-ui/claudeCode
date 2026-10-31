@@ -6,12 +6,15 @@
  GitHub phocoena-ui/claudeCode のブランチ claude/vibrant-knuth-rb4nw9 の TropFishR/ELEFAN_intro/ にも同じもの一式
 
 ■ 中身
- ELEFAN_intro_narrated.pptx   土台の PowerPoint（13 枚、スライドは画像、合成音声 Open JTalk、ノートに読み原稿）
+ ELEFAN_intro_narrated.pptx   土台の PowerPoint（13 枚、PowerPoint で編集できる文字・表・図形。グラフと数式は画像。
+                              合成音声 Open JTalk、ノートに読み原稿）
  aivis_narrate.R              土台の音声を AivisSpeech（阿井田 茂）の声に差し替える R スクリプト
                               → ELEFAN_intro_narrated_aivis.pptx ができる
  narration.json               読み原稿（スライドごと）
  narration_yomi.json          読み原稿の読み上げ用（英語の用語や読み違えやすい語をかなにしたもの）
- render.js / tts.py / build.js / post.py   土台の PowerPoint を作るスクリプト（クラウド側で使用）
+ build_edit.js / render_head.html / tts.py / post.py   土台の PowerPoint を作るスクリプト（クラウド側で使用）
+   build_edit.js：スライドの HTML を Chromium で描いて位置と書式を読み取り、PowerPoint の部品として置き直す
+   post.py：音声の自動再生と自動で次へ進む設定を加える（日本語の禁則は 0概要/post.py）
 
 ■ 阿井田 茂の声の版を作る手順（Windows の PC で）
  1. AivisSpeech を起動する（ブラウザで http://127.0.0.1:10101/docs が開けば準備完了）

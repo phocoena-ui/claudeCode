@@ -1,6 +1,6 @@
 import zipfile, json, re, sys
 durs = json.load(open("audio/durations.json"))
-src, dst = "raw.pptx", sys.argv[1]
+src, dst = sys.argv[1], sys.argv[2]
 TIMING = ('<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>'
  '<p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>'
  '<p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="indefinite"/><p:cond evt="onBegin" delay="0"><p:tn val="2"/></p:cond></p:stCondLst><p:childTnLst>'
