@@ -21,6 +21,9 @@ for item in zin.infolist():
     if m:
         i = int(m.group(1)); x = data.decode("utf8")
         x = x.replace("<a:videoFile ", "<a:audioFile ")
+        # pptxgenjs は図形の id が重複することがあるので、出てくる順に 1, 2, 3, … と振り直す
+        k = iter(range(1, 10000))
+        x = re.sub(r'<p:cNvPr id="\d+"', lambda m: f'<p:cNvPr id="{next(k)}"', x)
         spid = re.search(r'<p:cNvPr id="(\d+)" name="Media', x).group(1)
         ms = int(durs[i - 1] * 1000)
         extra = f'<p:transition spd="med" advTm="{ms + 1500}"><p:fade/></p:transition>' + TIMING.replace("{SPID}", spid).replace("{DUR}", str(ms))
