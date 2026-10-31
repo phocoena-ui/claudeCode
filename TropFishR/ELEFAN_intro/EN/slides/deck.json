@@ -1,0 +1,10 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-31T09:00:00Z"},
+  "lists": "css",
+  "title": "Getting Started with ELEFAN",
+  "order": ["cover", "why", "peaks", "vbgf", "restructure", "score", "search", "rcode", "example", "pitfalls", "statement", "tips", "summary"],
+  "sections": {},
+  "faces": {},
+  "designSystems": []
+}

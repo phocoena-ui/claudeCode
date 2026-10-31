@@ -16,6 +16,13 @@
    build_edit.js：スライドの HTML を Chromium で描いて位置と書式を読み取り、PowerPoint の部品として置き直す
    post.py：音声の自動再生と自動で次へ進む設定を加える（日本語の禁則は 0概要/post.py）
 
+■ 英語版（EN/）
+ ELEFAN_intro_narrated_EN.pptx  Getting Started with ELEFAN（13 枚、編集できる版、カナダ英語の文面）
+                                音声は Kokoro（bm_george、イギリス英語の男声）でクラウド側で合成済み
+ narration_en.json              英語の読み原稿（スライドのノートにも入っている）
+ tts_kokoro.py                  英語の音声を作るスクリプト（kokoro-onnx、モデルは GitHub の kokoro-onnx リリースから）
+ slides/                        英語版スライドの HTML（build_edit.js の入力）
+
 ■ 阿井田 茂の声の版を作る手順（Windows の PC で）
  1. AivisSpeech を起動する（ブラウザで http://127.0.0.1:10101/docs が開けば準備完了）
  2. RStudio で aivis_narrate.R を開き、Source を押す
