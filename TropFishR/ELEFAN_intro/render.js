@@ -13,7 +13,7 @@ th{background:#14213D;color:#FBFAF6;font-weight:700}</style></head><body>`;
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   for (const [i, id] of order.entries()) {
     let s = fs.readFileSync(path.join(D, `project/slides/${id}.html`), 'utf8');
-    s = s.replace('/_blob/576f77cba921ca6072a02fe2420883c3', 'eq.svg').replace('/_blob/302e1fa4d788f711c9cb1dcb86991569', 'phi.svg');
+    s = s.replace('/_blob/576f77cba921ca6072a02fe2420883c3', 'eq.svg').replace('/_blob/54c4492dd46dfbcc3a231a4b873da46b', 'phi.svg');
     fs.writeFileSync(`render/${id}.html`, head + s + '</body></html>');
     await page.goto('file://' + path.resolve(`render/${id}.html`));
     await page.evaluate(() => document.fonts.ready);
